@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Visualization of Sorting Algorithms</title>
+        <script src="script/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="styles/interface.css" />
+    </head>
+    <body>
+        </a>
+        <div id="menu">
+            <!-- <div id="sliders">
+                <div class="slider">
+                    <label for="elements">Elements</label>
+                    <input class="slider-input" name="elements" id="elements" type="range" min="5" max="20" value="5" />
+                    <span class="count" id="element-count">0</span>
+                </div>
+            </div> -->
+            
+            <div id="text-box">
+                <div class="array-input">
+                    <label id="label-input" for="input">Array Input</label>
+                    <input  class="array-input" id="array-input" placeholder="Enter numbers, seperated by spaces...">
+                </div>
+            </div>
+            <div id="algos-sort">
+                <div id="algos">
+                    <label>Algorithm</label>
+                    <select id="algorithms">
+                        <option value="bubble">Bubble Sort</option>
+                        <option value="heap">Heap Sort</option>
+                        <option value="insertion">Insertion Sort</option>
+                        <option value="selection">Selection Sort</option>
+                        <option value="shell">Shell Sort</option>
+                    </select>
+                </div>
+                <div id="sort-order">
+                    <label>Order</label>
+                    <select id="order">
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select>
+                </div>
+            </div>
+            <div id="buttons">
+                <input type="button" id="sort" class="sort green" value="Sort" />
+                <input type="button" id="reset" class="green" value="Reset" />
+                <input type="button" id="stop" value="Stop" disabled />
+            </div>
+        </div>
+        <div id="algo-info">
+            <div id="bubble-info" class="algo-container hidden">
+                <h2 class="algo-header">Bubble Sort</h2>
+                <span class="algo-complexity">
+                    <ul>
+                        <li class="algo-info"><span class="complexity-item">Worst Complexity : </span><span class="complexity-value">N^2</span></li>
+                        <li class="algo-info"><span class="complexity-item">Average Complexity : </span><span class="complexity-value">N^2</span></li>
+                        <li class="algo-info"><span class="complexity-item">Best Complexity : </span><span class="complexity-value">N</span></li>
+                        <li class="algo-info"><span class="complexity-item">Space Complexity : </span><span class="complexity-value">1</span></li>
+                        <li class="algo-info"><span class="complexity-item">Method : </span><span class="complexity-value">Exchanging</span></li>
+                        <li class="algo-info"><span class="complexity-item">Stable : </span><span class="complexity-value">Yes</span></li>
+                        <li class="algo-info"><span class="complexity-item">Swap : </span><span id="swap1" class="complexity-value">0</span></li>
+                        <li class="algo-info"><span class="complexity-item">Compare : </span><span id="compare1" class="complexity-value">0</span></li>
+                    </ul>
+                </span>
+            </div>
+
+            <div id="heap-info" class="algo-container hidden">
+                <h2 class="algo-header">Heap Sort</h2>
+                <span class="algo-complexity">
+                    <ul>
+                        <li class="algo-info">
+                            <span class="complexity-item">Worst Complexity : </span><span class="complexity-value">N * log(N)</span>
+                        </li>
+                        <li class="algo-info">
+                            <span class="complexity-item">Average Complexity : </span><span class="complexity-value">N * log(N)</span>
+                        </li>
+                        <li class="algo-info">
+                            <span class="complexity-item">Best Complexity : </span><span class="complexity-value">N * log(N)</span>
+                        </li>
+                        <li class="algo-info"><span class="complexity-item">Space Complexity : </span><span class="complexity-value">1</span></li>
+                        <li class="algo-info"><span class="complexity-item">Method : </span><span class="complexity-value">Selection</span></li>
+                        <li class="algo-info"><span class="complexity-item">Stable : </span><span class="complexity-value">No</span></li>
+                        <li class="algo-info"><span class="complexity-item">Swap : </span><span id="swap3" class="complexity-value">0</span></li>
+                        <li class="algo-info"><span class="complexity-item">Compare : </span><span id="compare3" class="complexity-value">0</span></li>
+                    </ul>
+                    </ul>
+                </span>
+            </div>
+
+            <div id="insertion-info" class="algo-container hidden">
+                <h2 class="algo-header">Insertion Sort</h2>
+                <span class="algo-complexity">
+                    <ul>
+                        <li class="algo-info"><span class="complexity-item">Worst Complexity : </span><span class="complexity-value">N ^ 2</span></li>
+                        <li class="algo-info">
+                            <span class="complexity-item">Average Complexity : </span><span class="complexity-value">N ^ 2</span>
+                        </li>
+                        <li class="algo-info"><span class="complexity-item">Best Complexity : </span><span class="complexity-value">N</span></li>
+                        <li class="algo-info"><span class="complexity-item">Space Complexity : </span><span class="complexity-value">1</span></li>
+                        <li class="algo-info"><span class="complexity-item">Method : </span><span class="complexity-value">Insertion</span></li>
+                        <li class="algo-info"><span class="complexity-item">Stable : </span><span class="complexity-value">Yes</span></li>
+                        <li class="algo-info"><span class="complexity-item">Swap : </span><span id="swap2" class="complexity-value">0</span></li>
+                        <li class="algo-info"><span class="complexity-item">Compare : </span><span id="compare2" class="complexity-value">0</span></li>
+                    </ul>
+                    </ul>
+                </span>
+            </div>
+
+            <div id="selection-info" class="algo-container hidden">
+                <h2 class="algo-header">Selection Sort</h2>
+                <span class="algo-complexity">
+                    <ul>
+                        <li class="algo-info"><span class="complexity-item">Worst Complexity : </span><span class="complexity-value">N ^ 2</span></li>
+                        <li class="algo-info">
+                            <span class="complexity-item">Average Complexity : </span><span class="complexity-value">N ^ 2</span>
+                        </li>
+                        <li class="algo-info"><span class="complexity-item">Best Complexity : </span><span class="complexity-value">N ^ 2</span></li>
+                        <li class="algo-info"><span class="complexity-item">Space Complexity : </span><span class="complexity-value">1</span></li>
+                        <li class="algo-info"><span class="complexity-item">Method : </span><span class="complexity-value">Selection</span></li>
+                        <li class="algo-info"><span class="complexity-item">Stable : </span><span class="complexity-value">No</span></li>
+                        <li class="algo-info"><span class="complexity-item">Swap : </span><span id="swap4" class="complexity-value">0</span></li>
+                        <li class="algo-info"><span class="complexity-item">Compare : </span><span id="compare4" class="complexity-value">0</span></li>
+                    </ul>
+                    </ul>
+                </span>
+            </div>
+
+            <div id="shell-info" class="algo-container hidden">
+                <h2 class="algo-header">Shell Sort</h2>
+                <span class="algo-complexity">
+                    <ul>
+                        <li class="algo-info">
+                            <span class="complexity-item">Worst Complexity : </span><span class="complexity-value">Depends on Gap Sequence</span>
+                        </li>
+                        <li class="algo-info">
+                            <span class="complexity-item">Average Complexity : </span><span class="complexity-value">N * log(N)^2 OR N ^ (3/2)</span>
+                        </li>
+                        <li class="algo-info"><span class="complexity-item">Best Complexity : </span><span class="complexity-value">N</span></li>
+                        <li class="algo-info"><span class="complexity-item">Method : </span><span class="complexity-value">Insertion</span></li>
+                        <li class="algo-info"><span class="complexity-item">Stable : </span><span class="complexity-value">No</span></li>
+                        <li class="algo-info"><span class="complexity-item">Swap : </span><span id="swap5" class="complexity-value">0</span></li>
+                        <li class="algo-info"><span class="complexity-item">Compare : </span><span id="compare5" class="complexity-value">0</span></li>
+                    </ul>
+                    </ul>
+                </span>
+            </div>
+        </div>
+        <div id="container"><div id="bars"></div></div>
+<!--  let TOTAL_ELEMENTS = document.getElementById("elements").value; -->
+        <script>
+            const CONTAINER_WIDTH = 400;
+            let SPEED = 100;
+            let container = document.getElementById("bars");
+            let bars = document.getElementsByClassName("bar");
+
+            let TOTAL_ELEMENTS = 5;
+        </script>
+        <!-- let INPUT_ARRAY = document.querySelector("#array-input").value; -->
+
+        <script src="script/interface.js"></script>
+        <script src="script/animation.js"></script>
+        <script src="script/algorithms.js"></script>
+        
+    </body>
+</html>
